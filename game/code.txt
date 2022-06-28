@@ -1,0 +1,73 @@
+# The script of the game goes in this file.
+
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
+
+define chara = Character(_("Chara"), color="#156129")
+
+
+# The game starts here.
+
+label start:
+
+    # Show a background. This uses a placeholder by default, but you can
+    # add a file (named either "bg room.png" or "bg room.jpg") to the
+    # images directory to show it.
+
+    scene bg street bushes
+
+    # This shows a character sprite. A placeholder is used, but you can
+    # replace it by adding a file named "eileen happy.png" to the images
+    # directory.
+
+    show chara red happy
+
+    # These display lines of dialogue.
+
+    chara "This is all just a test."
+
+    chara "Please comply, and things will be okay."
+
+    # This ends the game.
+
+    # ivory "Wow, I'm so digital now!"
+
+    $ strTest = "Testing String"
+    # https://lemmasoft.renai.us/forums/viewtopic.php?t=30323
+    # screens.rpy -> Quick Menu Screen -> button for inventory?
+    menu:
+
+        "Alright, I'll comply." :
+            jump choice1_yes
+
+        "No? That's so weird.":
+            jump choice1_no
+
+    label choice1_yes:
+
+        $ menu_flag = True
+
+        show chara green happy
+
+        chara "Thank you for your compulsion."
+
+        jump choice1_done
+
+    label choice1_no:
+
+        $ menu_flag = False
+
+        chara "That displeases me."
+
+        jump choice1_done
+
+    label choice1_done:
+
+        if menu_flag:
+            chara "Come along."
+        else:
+            chara "Execution time."
+        # ... the game continues here.
+ 
+
+    return
